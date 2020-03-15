@@ -1,25 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// import QRCode from 'qrcode.react';
+import QRCode from 'qrcode.react';
 
-// const downloadQR = () => {
-//     const canvas = document.getElementById('qrcode');
-//     const pngUrl = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-//     console.log('pngUrl', pngUrl);
-//     let downloadLink = document.createElement('a');
-//     downloadLink.href = pngUrl;
-//     downloadLink.download = 'qr.png';
-//     document.body.appendChild(downloadLink);
-//     downloadLink.click();
-//     document.body.removeChild(downloadLink);
-// };
+function Register() {
+  const [fullName, setFullName] = useState('');
+  const [qrCode, setQrCode] = useState(null);
 
-function Register () {
-    return (
-        <div>
-
-        </div>
+  const generateQRCode = () => {
+    setQrCode(
+      <QRCode
+        id='qrcode'
+        value={fullName}
+        size={290}
+        level={'H'}
+        includeMargin={true}
+      />
     );
+  };
+
+  const downloadQR = () => {
+    const canvas = document.getElementById('qrcode');
+    const pngUrl = canvas
+      .toDataURL('image/png')
+      .replace('image/png', 'image/octet-stream');
+    let downloadLink = document.createElement('a');
+    downloadLink.href = pngUrl;
+    downloadLink.download = 'qr.png';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
+  return (
+    <div className='container mt-5'>
+      <div className='row'>
+        {/* Register Form */}
+        <div className='col-md-6'>
+          <div className='form-group'>
+            <label htmlFor='fullName'>Full Name: </label>
+            <input
+              type='text'
+              className='form-control'
+              id='fullName'
+              value={fullName}
+              onChange={e => setFullName(e.target.value)}
+            />
+          </div>
+          <button onClick={generateQRCode} className='btn btn-primary'>
+            Generate QR
+          </button>
+        </div>
+
+        {/* Display registered user information */}
+        <div className='col-md-6 text-center'>
+          {qrCode}
+          {qrCode && (
+            <a
+              className='btn btn-primary mt-3 d-block text-white'
+              role='button'
+              onClick={downloadQR}>
+              {' '}
+              Download QRCode
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Register;
