@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import QRCode from 'qrcode.react';
 
@@ -49,6 +50,9 @@ function Register() {
           <button onClick={generateQRCode} className='btn btn-primary'>
             Generate QR
           </button>
+          <NavLink to='/scanner-qr' className='btn ml-3 btn-primary'>
+            Login
+          </NavLink>
         </div>
 
         {/* Display registered user information */}
@@ -56,6 +60,7 @@ function Register() {
           {qrCode}
           {qrCode && (
             <a
+              href='#download'
               className='btn btn-primary mt-3 d-block text-white'
               role='button'
               onClick={downloadQR}>
