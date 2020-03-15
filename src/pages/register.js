@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import QRCode from 'qrcode.react';
+import userServices from '../services/user.services';
 
-function Register() {
+function Register () {
   const [fullName, setFullName] = useState('');
   const [qrCode, setQrCode] = useState(null);
 
-  const generateQRCode = () => {
+  const generateQRCode = async () => {
+    const user = { fullName };
+    const { data } = await userServices.createUser(user);
+
     setQrCode(
       <QRCode
         id='qrcode'
-        value={fullName}
+        value={data._id}
         size={290}
         level={'H'}
         includeMargin={true}
