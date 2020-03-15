@@ -1,0 +1,15 @@
+.card-body {
+  height: 500px;
+  overflow: auto;
+}
+
+.btn-back {
+  border: 1px white solid;
+  padding: 4px 10px;
+  font-size: 15px;
+  transition: all 0.3s;
+  &:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}

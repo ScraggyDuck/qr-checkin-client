@@ -1,0 +1,29 @@
+body {
+  height: 100vh;
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+}
+
+.box-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 2px -1px 9px 0px #8f3e3e;
+}
+
+.container {
+  height: 100vh !important;
+}
+
+.btn {
+  border-radius: 0 !important;
+  background-color: #44a847 !important;
+  border: none !important;
+  transition: all 0.3s !important;
+  text-transform: uppercase;
+  font-size: 14px !important;
+  padding: 7px 30px !important;
+  &:hover {
+    opacity: 0.8;
+  }
+}
