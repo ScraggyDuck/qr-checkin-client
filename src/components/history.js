@@ -20,10 +20,11 @@ export default function History () {
   const renderHistory = () => {
     let result = null;
     result = history.map(item => {
+      let date = new Date(item.createdAt).toLocaleString('en-GB', { timeZone: 'UTC' })
       return (
         <div className={`alert mb-3 ${item.isCheckIn ? 'alert-success' : 'alert-warning'}`} role='alert' key={item._id}>
           {item.fullName} đã {item.isCheckIn ? 'check in' : 'check out'} vào lúc
-          : {item.createdAt}
+          : {date}
         </div>
       );
     });
